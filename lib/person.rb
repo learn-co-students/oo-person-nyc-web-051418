@@ -23,6 +23,11 @@ class Person
 
     end
 
+    def get_paid (salary_amount)
+
+        self.bank_account += salary_amount
+        'all about the benjamins'
+    end
 
 
 
