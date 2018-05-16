@@ -1,9 +1,9 @@
+require 'pry'
+
 class Person
 
-    #add name to attr_reader so that it cannot be overwritten
-    attr_writer
-    attr_reader :name, :happiness, :hygiene
-    attr_accessor :bank_account
+    attr_accessor :bank_account, :happiness, :hygiene
+    attr_reader :name
 
     def initialize (name)
         @name = name
@@ -12,29 +12,33 @@ class Person
         @hygiene = 8
     end
 
-    def hygiene=(hygiene_score)
-        @hygiene = hygiene_score
-        @hygiene.clamp(0,10)
+    def happy?
+        @happiness > 7 ? true : false
     end
 
-    def happiness=(happiness_score)
-        @happiness = happiness_score
-        @happiness.clamp(0,10)
-
+    def clean?
+        @hygiene > 7 ? true : false
     end
 
     def get_paid (salary_amount)
-
-        self.bank_account += salary_amount
+        @bank_account += salary_amount
         'all about the benjamins'
     end
 
+    def take_bath
+        @hygiene += 4
+        "♪ Rub-a-dub just relaxing in the tub ♫"
+    end
 
-
-
-
-
-
-
+    def work_out
+        @hygiene -= 3
+        @happiness += 2
+        "♪ another one bites the dust ♫"
+    end
 
 end
+
+me = Person.new("Matt")
+
+#binding.pry
+true
